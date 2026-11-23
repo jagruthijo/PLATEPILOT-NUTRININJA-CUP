@@ -1,0 +1,108 @@
+/* ==========================================================================
+   PLATEPILOT - ADVANCED ANIMATION & MOTION SYSTEM
+   ========================================================================== */
+
+/* Shimmer Loading Skeleton */
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card-subtle) 25%, var(--color-border) 50%, var(--bg-card-subtle) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Floating Animations for Landing Page Hero Cards */
+.floating-element-1 {
+  animation: float-slow 4.5s ease-in-out infinite alternate;
+}
+
+.floating-element-2 {
+  animation: float-medium 3.8s ease-in-out infinite alternate;
+}
+
+.floating-element-3 {
+  animation: float-fast 5.2s ease-in-out infinite alternate;
+}
+
+@keyframes float-slow {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-16px) rotate(1.5deg); }
+}
+
+@keyframes float-medium {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-12px) rotate(-1deg); }
+}
+
+@keyframes float-fast {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-20px); }
+}
+
+/* Subtle Pulse Glow for Lime Accents */
+.pulse-glow {
+  animation: pulse-glow-anim 2.5s infinite;
+}
+
+@keyframes pulse-glow-anim {
+  0% { box-shadow: 0 0 0 0 rgba(184, 233, 134, 0.4); }
+  70% { box-shadow: 0 0 0 12px rgba(184, 233, 134, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(184, 233, 134, 0); }
+}
+
+/* Page Entrance */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Stagger Helpers */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.12s; }
+.stagger-3 { animation-delay: 0.19s; }
+.stagger-4 { animation-delay: 0.26s; }
+
+/* Interactive Hover Lift */
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Checkbox Check Pop */
+@keyframes checkPop {
+  0% { transform: scale(0.6); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.custom-checkbox.checked svg {
+  animation: checkPop 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Accessibility: Respect User's Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .floating-element-1, .floating-element-2, .floating-element-3 {
+    animation: none !important;
+  }
+}

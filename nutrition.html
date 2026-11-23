@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlatePilot - Advanced Nutrition Visualizer & Fitness Tracker</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Desktop Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon-wrapper">
+          <i data-lucide="utensils" style="width: 22px; height: 22px;"></i>
+        </div>
+        <div>
+          <span class="brand-title">PLATEPILOT</span>
+          <div class="brand-subtitle">NutriNinja Cup</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Navigation</div>
+        <a href="dashboard.html" class="nav-item">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="meal-planner.html" class="nav-item">
+          <i data-lucide="calendar-days"></i>
+          <span>7-Day Planner</span>
+        </a>
+        <a href="recipes.html" class="nav-item">
+          <i data-lucide="book-open"></i>
+          <span>52+ Recipes</span>
+          <span class="nav-badge">52</span>
+        </a>
+        <a href="grocery.html" class="nav-item">
+          <i data-lucide="shopping-cart"></i>
+          <span>Smart Grocery</span>
+        </a>
+        <a href="nutrition.html" class="nav-item active">
+          <i data-lucide="pie-chart"></i>
+          <span>Nutrition Analytics</span>
+        </a>
+
+        <div class="nav-section-title">Student Special</div>
+        <a href="hostel-mess.html" class="nav-item">
+          <i data-lucide="shield-alert"></i>
+          <span>Mess Alternative</span>
+          <span class="nav-badge" style="background: var(--color-lime-accent); color: var(--color-deep-green);">HOT</span>
+        </a>
+        <a href="pantry.html" class="nav-item">
+          <i data-lucide="package-search"></i>
+          <span>Pantry Leftovers</span>
+        </a>
+        <a href="community.html" class="nav-item">
+          <i data-lucide="users"></i>
+          <span>Student Board</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+          <i data-lucide="sliders"></i>
+          <span>Profile & Goals</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-mini-card" onclick="window.location.href='profile.html'">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" 
+               alt="User Avatar" class="user-mini-avatar">
+          <div style="flex: 1; overflow: hidden;">
+            <div class="user-mini-name user-display-name">Aarav Sharma</div>
+            <div class="user-mini-budget header-budget-val">₹120/day Budget</div>
+          </div>
+          <i data-lucide="chevron-right" style="width: 16px; height: 16px; color: rgba(255,255,255,0.4);"></i>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper">
+      <!-- App Header -->
+      <header class="app-header">
+        <div class="header-search">
+          <i data-lucide="search" style="width: 18px; height: 18px; color: var(--text-muted);"></i>
+          <input type="text" class="global-search-input" placeholder="Search nutrition benchmarks...">
+        </div>
+
+        <div class="header-actions">
+          <div class="budget-chip">
+            <i data-lucide="wallet" style="width: 16px; height: 16px;"></i>
+            <span class="header-budget-val">₹120/day</span>
+          </div>
+
+          <button class="icon-btn" id="theme-toggle-btn" title="Toggle Light/Dark Theme">
+            <span id="theme-toggle-icon"><i data-lucide="moon"></i></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Mobile Topbar -->
+      <div class="mobile-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div class="brand-icon-wrapper" style="width: 32px; height: 32px;">
+            <i data-lucide="utensils" style="width: 16px; height: 16px;"></i>
+          </div>
+          <strong style="font-size: 1.1rem; color: #FFF;">NUTRITION</strong>
+        </div>
+        <button class="icon-btn" id="mobile-menu-toggle" style="background: transparent; border: none; color: #FFF;">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+
+      <!-- Page Content Container -->
+      <main class="page-container fade-in-up">
+        <div style="margin-bottom: 28px;">
+          <h1 style="font-size: 2rem;">Advanced Nutrition Visualizer</h1>
+          <p style="font-size: 0.92rem;">Scientific breakdown of your macronutrients, micronutrients, and muscle recovery targets.</p>
+        </div>
+
+        <!-- Target vs Actual Nutrition Progress Cards -->
+        <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 30px;">
+          <!-- Calories -->
+          <div class="kpi-card">
+            <span class="kpi-title">Calories</span>
+            <div style="font-size: 1.6rem; font-weight: 800; margin: 6px 0;" id="nutr-cal-actual">1,990 kcal</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px;" id="nutr-cal-target">Target: 2,100 kcal</div>
+            <div class="progress-container">
+              <div class="progress-fill calorie-fill" id="nutr-cal-bar" style="width: 95%;"></div>
+            </div>
+            <span style="font-size: 0.72rem; font-weight: 700; color: #E65100; margin-top: 6px;" id="nutr-cal-pct">95%</span>
+          </div>
+
+          <!-- Protein -->
+          <div class="kpi-card">
+            <span class="kpi-title">Protein</span>
+            <div style="font-size: 1.6rem; font-weight: 800; color: var(--color-success); margin: 6px 0;" id="nutr-protein-actual">108 g</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px;" id="nutr-protein-target">Target: 110 g</div>
+            <div class="progress-container">
+              <div class="progress-fill protein-fill" id="nutr-protein-bar" style="width: 98%;"></div>
+            </div>
+            <span style="font-size: 0.72rem; font-weight: 700; color: var(--color-success); margin-top: 6px;" id="nutr-protein-pct">98%</span>
+          </div>
+
+          <!-- Carbohydrates -->
+          <div class="kpi-card">
+            <span class="kpi-title">Carbohydrates</span>
+            <div style="font-size: 1.6rem; font-weight: 800; margin: 6px 0;" id="nutr-carbs-actual">248 g</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px;" id="nutr-carbs-target">Target: 260 g</div>
+            <div class="progress-container">
+              <div class="progress-fill" id="nutr-carbs-bar" style="background: #0288D1; width: 95%;"></div>
+            </div>
+            <span style="font-size: 0.72rem; font-weight: 700; color: #0288D1; margin-top: 6px;" id="nutr-carbs-pct">95%</span>
+          </div>
+
+          <!-- Fats -->
+          <div class="kpi-card">
+            <span class="kpi-title">Healthy Fats</span>
+            <div style="font-size: 1.6rem; font-weight: 800; margin: 6px 0;" id="nutr-fat-actual">58 g</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px;" id="nutr-fat-target">Target: 65 g</div>
+            <div class="progress-container">
+              <div class="progress-fill" id="nutr-fat-bar" style="background: #FB8C00; width: 89%;"></div>
+            </div>
+            <span style="font-size: 0.72rem; font-weight: 700; color: #FB8C00; margin-top: 6px;" id="nutr-fat-pct">89%</span>
+          </div>
+
+          <!-- Fiber -->
+          <div class="kpi-card">
+            <span class="kpi-title">Dietary Fiber</span>
+            <div style="font-size: 1.6rem; font-weight: 800; color: #7CB342; margin: 6px 0;" id="nutr-fiber-actual">32 g</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 10px;" id="nutr-fiber-target">Target: 35 g</div>
+            <div class="progress-container">
+              <div class="progress-fill" id="nutr-fiber-bar" style="background: #7CB342; width: 91%;"></div>
+            </div>
+            <span style="font-size: 0.72rem; font-weight: 700; color: #7CB342; margin-top: 6px;" id="nutr-fiber-pct">91%</span>
+          </div>
+        </div>
+
+        <!-- Charts Row -->
+        <div class="analytics-grid" style="margin-bottom: 32px;">
+          <!-- Macro Ratio Doughnut -->
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <h3 class="card-title">
+                <i data-lucide="pie-chart" style="color: var(--color-primary-forest);"></i>
+                Macronutrient Ratio
+              </h3>
+            </div>
+            <div class="doughnut-wrapper">
+              <canvas id="nutrition-macro-canvas"></canvas>
+            </div>
+            <div class="macro-chart-legend">
+              <div class="legend-item">
+                <div class="legend-dot" style="background: #2E7D32;"></div>
+                <span>Protein (108g)</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot" style="background: #0288D1;"></div>
+                <span>Carbs (248g)</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot" style="background: #F57C00;"></div>
+                <span>Fats (58g)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weekly Nutrition Trends -->
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <h3 class="card-title">
+                <i data-lucide="trending-up" style="color: var(--color-primary-forest);"></i>
+                Weekly Calorie & Protein Stability
+              </h3>
+              <span class="badge badge-lime">Consistently On Target</span>
+            </div>
+            <div style="flex: 1; height: 260px;">
+              <canvas id="nutrition-weekly-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Body Weight Progression & Fitness Log -->
+        <div class="card" style="margin-bottom: 32px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 14px;">
+            <div>
+              <h3 style="font-size: 1.25rem; display: flex; align-items: center; gap: 8px;">
+                <i data-lucide="activity" style="color: var(--color-primary-forest);"></i>
+                Body Weight & Fitness Progression
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Tracking gradual lean muscle mass gains over academic semesters.</p>
+            </div>
+
+            <!-- Log new weight -->
+            <form id="log-weight-form" style="display: flex; gap: 10px;">
+              <input type="number" step="0.1" class="form-control" id="new-weight-val" placeholder="Weight (kg)" style="width: 130px;" required>
+              <button type="submit" class="btn btn-primary btn-sm">
+                <i data-lucide="plus"></i> Log Weight
+              </button>
+            </form>
+          </div>
+
+          <div style="height: 240px;">
+            <canvas id="weight-history-canvas"></canvas>
+          </div>
+        </div>
+
+        <!-- Indian Protein-to-Rupee Value Ranking -->
+        <div class="card" style="padding: 0; overflow: hidden; margin-bottom: 30px;">
+          <div style="padding: 20px 24px; border-bottom: 1px solid var(--color-border); background: var(--bg-card-subtle);">
+            <h3 style="font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">
+              <i data-lucide="award" style="color: var(--color-primary-forest);"></i>
+              Indian Protein-per-Rupee Efficiency Matrix
+            </h3>
+            <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">Which foods yield the most grams of protein for every single rupee spent in India.</p>
+          </div>
+          <div id="protein-efficiency-rows">
+            <!-- Populated by NutritionPage.renderEfficiencyMatrix() -->
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Nav -->
+  <nav class="mobile-bottom-nav">
+    <a href="dashboard.html" class="mobile-nav-link">
+      <i data-lucide="layout-dashboard"></i>
+      <span>Home</span>
+    </a>
+    <a href="meal-planner.html" class="mobile-nav-link">
+      <i data-lucide="calendar"></i>
+      <span>Planner</span>
+    </a>
+    <a href="recipes.html" class="mobile-nav-link">
+      <i data-lucide="book-open"></i>
+      <span>Recipes</span>
+    </a>
+    <a href="grocery.html" class="mobile-nav-link">
+      <i data-lucide="shopping-cart"></i>
+      <span>Grocery</span>
+    </a>
+    <a href="nutrition.html" class="mobile-nav-link active">
+      <i data-lucide="pie-chart"></i>
+      <span>Nutrition</span>
+    </a>
+  </nav>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script src="js/data/ingredients.js"></script>
+  <script src="js/data/recipes.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/nutrition-page.js"></script>
+</body>
+</html>

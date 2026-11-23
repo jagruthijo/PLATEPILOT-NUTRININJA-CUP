@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlatePilot - Personalized Student Dashboard</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- Desktop Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon-wrapper">
+          <i data-lucide="utensils" style="width: 22px; height: 22px;"></i>
+        </div>
+        <div>
+          <span class="brand-title">PLATEPILOT</span>
+          <div class="brand-subtitle">NutriNinja Cup</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Navigation</div>
+        <a href="dashboard.html" class="nav-item active">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </a>
+        <a href="meal-planner.html" class="nav-item">
+          <i data-lucide="calendar-days"></i>
+          <span>7-Day Planner</span>
+        </a>
+        <a href="recipes.html" class="nav-item">
+          <i data-lucide="book-open"></i>
+          <span>52+ Recipes</span>
+          <span class="nav-badge">52</span>
+        </a>
+        <a href="grocery.html" class="nav-item">
+          <i data-lucide="shopping-cart"></i>
+          <span>Smart Grocery</span>
+        </a>
+        <a href="nutrition.html" class="nav-item">
+          <i data-lucide="pie-chart"></i>
+          <span>Nutrition Analytics</span>
+        </a>
+
+        <div class="nav-section-title">Student Special</div>
+        <a href="hostel-mess.html" class="nav-item">
+          <i data-lucide="shield-alert"></i>
+          <span>Mess Alternative</span>
+          <span class="nav-badge" style="background: var(--color-lime-accent); color: var(--color-deep-green);">HOT</span>
+        </a>
+        <a href="pantry.html" class="nav-item">
+          <i data-lucide="package-search"></i>
+          <span>Pantry Leftovers</span>
+        </a>
+        <a href="community.html" class="nav-item">
+          <i data-lucide="users"></i>
+          <span>Student Board</span>
+        </a>
+        <a href="profile.html" class="nav-item">
+          <i data-lucide="sliders"></i>
+          <span>Profile & Goals</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-mini-card" onclick="window.location.href='profile.html'">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" 
+               alt="User Avatar" class="user-mini-avatar">
+          <div style="flex: 1; overflow: hidden;">
+            <div class="user-mini-name user-display-name">Aarav Sharma</div>
+            <div class="user-mini-budget header-budget-val">₹120/day Budget</div>
+          </div>
+          <i data-lucide="chevron-right" style="width: 16px; height: 16px; color: rgba(255,255,255,0.4);"></i>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper">
+      <!-- App Header -->
+      <header class="app-header">
+        <div class="header-search">
+          <i data-lucide="search" style="width: 18px; height: 18px; color: var(--text-muted);"></i>
+          <input type="text" class="global-search-input" placeholder="Search 52+ Indian recipes (e.g. Soya, Poha, Eggs)...">
+        </div>
+
+        <div class="header-actions">
+          <div class="budget-chip">
+            <i data-lucide="wallet" style="width: 16px; height: 16px;"></i>
+            <span class="header-budget-val">₹120/day</span>
+          </div>
+
+          <button class="btn btn-outline btn-sm" id="btn-reset-demo" title="Reset to NutriNinja Cup Demo">
+            <i data-lucide="rotate-ccw"></i> Demo Reset
+          </button>
+
+          <button class="icon-btn" id="theme-toggle-btn" title="Toggle Light/Dark Theme">
+            <span id="theme-toggle-icon"><i data-lucide="moon"></i></span>
+          </button>
+
+          <a href="profile.html" class="icon-btn" title="Profile Settings">
+            <i data-lucide="user"></i>
+          </a>
+        </div>
+      </header>
+
+      <!-- Mobile Topbar -->
+      <div class="mobile-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div class="brand-icon-wrapper" style="width: 32px; height: 32px;">
+            <i data-lucide="utensils" style="width: 16px; height: 16px;"></i>
+          </div>
+          <strong style="font-size: 1.1rem; color: #FFF;">PLATEPILOT</strong>
+        </div>
+        <button class="icon-btn" id="mobile-menu-toggle" style="background: transparent; border: none; color: #FFF;">
+          <i data-lucide="menu"></i>
+        </button>
+      </div>
+
+      <!-- Page Content Container -->
+      <main class="page-container fade-in-up">
+        <!-- Dashboard Welcome Banner -->
+        <div class="dashboard-welcome">
+          <div class="welcome-text">
+            <h1>Good Morning! Let's fuel your day.</h1>
+            <p>Welcome back, <strong class="user-display-name">Aarav</strong>! Your daily meal plan is budget-optimized for <strong class="user-display-college">Hostel Campus</strong>.</p>
+          </div>
+          <div class="welcome-badges">
+            <div class="streak-badge">
+              <i data-lucide="flame"></i> 5 Day Streak
+            </div>
+            <button class="btn btn-lime btn-sm" id="btn-reoptimize">
+              <i data-lucide="sparkles"></i> Re-Optimize Plan
+            </button>
+          </div>
+        </div>
+
+        <!-- Upcoming Meal Timeline Banner -->
+        <div class="upcoming-meal-banner">
+          <div class="banner-left">
+            <div class="clock-icon-circle">
+              <i data-lucide="clock" style="width: 24px; height: 24px;"></i>
+            </div>
+            <div>
+              <div class="banner-title" id="upcoming-meal-name">Lunch: Soya Chunks Curry & Rice</div>
+              <div class="banner-subtitle" id="upcoming-meal-time">Scheduled at 01:30 PM • 31g Protein • ₹38</div>
+            </div>
+          </div>
+          <button class="btn btn-lime btn-sm" onclick="window.location.href='recipes.html?search=soya'">
+            View Recipe
+          </button>
+        </div>
+
+        <!-- KPI Grid (Budget, Calories, Protein, Macros) -->
+        <div class="kpi-grid">
+          <!-- KPI 1: Daily Budget -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Daily Budget</span>
+              <div class="kpi-icon budget">
+                <i data-lucide="wallet"></i>
+              </div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-main-val" id="kpi-spent-val">₹118</span>
+              <span class="kpi-target-val" id="kpi-budget-target">of ₹120</span>
+            </div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--color-success); margin-bottom: 8px;" id="kpi-remaining-budget">
+              ₹2 remaining
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill budget-fill" id="kpi-budget-fill" style="width: 98%;"></div>
+            </div>
+          </div>
+
+          <!-- KPI 2: Calories -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Calories</span>
+              <div class="kpi-icon calorie">
+                <i data-lucide="flame"></i>
+              </div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-main-val" id="kpi-calories-val">1,990</span>
+              <span class="kpi-target-val" id="kpi-calories-target">of 2,100 kcal</span>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;">
+              Target: Muscle Gain (+300)
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill calorie-fill" id="kpi-calories-fill" style="width: 95%;"></div>
+            </div>
+          </div>
+
+          <!-- KPI 3: Protein Tracker -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Protein Goal</span>
+              <div class="kpi-icon protein">
+                <i data-lucide="dumbbell"></i>
+              </div>
+            </div>
+            <div class="kpi-value-row">
+              <span class="kpi-main-val" style="color: var(--color-success);" id="kpi-protein-val">108g</span>
+              <span class="kpi-target-val" id="kpi-protein-target">of 110g</span>
+            </div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--color-success); margin-bottom: 8px;">
+              98% of Daily Requirement
+            </div>
+            <div class="progress-container">
+              <div class="progress-fill protein-fill" id="kpi-protein-fill" style="width: 98%;"></div>
+            </div>
+          </div>
+
+          <!-- KPI 4: Carbs & Fats -->
+          <div class="kpi-card">
+            <div class="kpi-header">
+              <span class="kpi-title">Carbs & Fats</span>
+              <div class="kpi-icon macros">
+                <i data-lucide="pie-chart"></i>
+              </div>
+            </div>
+            <div class="kpi-value-row">
+              <div>
+                <span class="kpi-main-val" id="kpi-carbs-val" style="font-size: 1.45rem;">248g</span>
+                <span style="font-size: 0.72rem; color: var(--text-muted); display: block;">Carbs</span>
+              </div>
+              <div style="margin-left: 20px;">
+                <span class="kpi-main-val" id="kpi-fats-val" style="font-size: 1.45rem;">58g</span>
+                <span style="font-size: 0.72rem; color: var(--text-muted); display: block;">Fats</span>
+              </div>
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: auto;">
+              Clean balanced student fuel
+            </div>
+          </div>
+        </div>
+
+        <!-- Analytics Row: Macro Doughnut + Weekly Trends Chart -->
+        <div class="analytics-grid">
+          <!-- Macro Doughnut Chart Card -->
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <h3 class="card-title">
+                <i data-lucide="pie-chart" style="color: var(--color-primary-forest);"></i>
+                Macronutrient Ratio
+              </h3>
+            </div>
+            <div class="doughnut-wrapper">
+              <canvas id="macro-doughnut-canvas"></canvas>
+              <div class="doughnut-center-text">
+                <div class="doughnut-center-val" id="doughnut-calories-val">1990</div>
+                <div class="doughnut-center-lbl">Kcal Total</div>
+              </div>
+            </div>
+            <div class="macro-chart-legend">
+              <div class="legend-item">
+                <div class="legend-dot" style="background: #2E7D32;"></div>
+                <span>Protein</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot" style="background: #0288D1;"></div>
+                <span>Carbs</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot" style="background: #F57C00;"></div>
+                <span>Fats</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Weekly Trends Chart Card -->
+          <div class="chart-card">
+            <div class="chart-card-header">
+              <h3 class="card-title">
+                <i data-lucide="trending-up" style="color: var(--color-primary-forest);"></i>
+                Weekly Spending & Protein Trend
+              </h3>
+              <span class="badge badge-lime">Avg: ₹117 / day</span>
+            </div>
+            <div style="flex: 1; height: 260px;">
+              <canvas id="weekly-trends-canvas"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Actions Toolbar -->
+        <div class="quick-actions-bar">
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
+            Quick Actions:
+          </span>
+          <button class="quick-action-btn" onclick="Dashboard.handleRegeneratePlan()">
+            <i data-lucide="sparkles"></i> Generate New Plan
+          </button>
+          <a href="meal-planner.html" class="quick-action-btn">
+            <i data-lucide="calendar"></i> 7-Day Calendar
+          </a>
+          <a href="hostel-mess.html" class="quick-action-btn">
+            <i data-lucide="shield-alert"></i> Mess Menu Rescue
+          </a>
+          <a href="grocery.html" class="quick-action-btn">
+            <i data-lucide="shopping-cart"></i> Smart Grocery List
+          </a>
+          <button class="quick-action-btn" id="btn-export-pdf">
+            <i data-lucide="download"></i> Export 7-Day PDF
+          </button>
+        </div>
+
+        <!-- Today's Meals Section -->
+        <div class="section-header-row">
+          <div>
+            <h2 style="font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
+              <i data-lucide="utensils-crossed" style="color: var(--color-primary-forest);"></i>
+              Today's Meal Schedule
+            </h2>
+            <p style="font-size: 0.88rem;">Click 'Swap' on any meal to see budget-friendly alternatives with live macro updates.</p>
+          </div>
+        </div>
+
+        <!-- 4 Meal Cards Grid -->
+        <div class="today-meals-grid">
+          <!-- Breakfast Card -->
+          <div class="meal-card" id="meal-card-breakfast"></div>
+
+          <!-- Lunch Card -->
+          <div class="meal-card" id="meal-card-lunch"></div>
+
+          <!-- Snack Card -->
+          <div class="meal-card" id="meal-card-snack"></div>
+
+          <!-- Dinner Card -->
+          <div class="meal-card" id="meal-card-dinner"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="mobile-bottom-nav">
+    <a href="dashboard.html" class="mobile-nav-link active">
+      <i data-lucide="layout-dashboard"></i>
+      <span>Home</span>
+    </a>
+    <a href="meal-planner.html" class="mobile-nav-link">
+      <i data-lucide="calendar"></i>
+      <span>Planner</span>
+    </a>
+    <a href="recipes.html" class="mobile-nav-link">
+      <i data-lucide="book-open"></i>
+      <span>Recipes</span>
+    </a>
+    <a href="grocery.html" class="mobile-nav-link">
+      <i data-lucide="shopping-cart"></i>
+      <span>Grocery</span>
+    </a>
+    <a href="profile.html" class="mobile-nav-link">
+      <i data-lucide="user"></i>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- One-Click Meal Swap Modal -->
+  <div class="modal-backdrop" id="swap-meal-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div>
+          <h3 id="swap-modal-slot-title" style="font-size: 1.25rem;">Swap Meal</h3>
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin: 0;">
+            Select an alternative. Daily cost, calories, and remaining budget will automatically recalculate.
+          </p>
+        </div>
+        <button class="btn btn-ghost btn-icon" id="btn-close-swap-modal">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div id="swap-alternatives-list">
+          <!-- Loaded dynamically by Dashboard.openSwapModal -->
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-outline btn-sm" onclick="App.closeModal('swap-meal-modal')">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  
+  <script src="js/data/ingredients.js"></script>
+  <script src="js/data/recipes.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/meal-optimizer.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/pdf-exporter.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

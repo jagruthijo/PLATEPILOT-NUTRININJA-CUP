@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PlatePilot - Eat Smart. Spend Less. Grow Strong. | Student Budget Nutrition</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+  
+  <style>
+    /* Landing Page Specific Styling */
+    .landing-nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(246, 247, 241, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--color-border);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    [data-theme="dark"] .landing-nav {
+      background: rgba(11, 22, 18, 0.92);
+    }
+
+    .landing-nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .landing-nav-links a:hover {
+      color: var(--color-primary-forest);
+    }
+
+    [data-theme="dark"] .landing-nav-links a:hover {
+      color: var(--color-lime-accent);
+    }
+
+    .hero-section {
+      padding: 80px 40px 100px;
+      max-width: 1300px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: var(--color-lime-light);
+      border: 1px solid rgba(184, 233, 134, 0.45);
+      color: var(--color-primary-forest);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      margin-bottom: 24px;
+    }
+
+    [data-theme="dark"] .hero-badge {
+      color: var(--color-lime-accent);
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+
+    .hero-title .highlight-lime {
+      color: var(--color-primary-forest);
+      position: relative;
+      display: inline-block;
+    }
+
+    [data-theme="dark"] .hero-title .highlight-lime {
+      color: var(--color-lime-accent);
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 560px;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 24px;
+      box-shadow: 0 25px 50px rgba(16, 44, 37, 0.15);
+    }
+
+    .floating-pill {
+      position: absolute;
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+      z-index: 10;
+    }
+
+    .pill-calorie {
+      top: -24px;
+      right: 20px;
+    }
+
+    .pill-protein {
+      bottom: -20px;
+      left: -20px;
+    }
+
+    .pill-budget {
+      top: 45%;
+      right: -30px;
+    }
+
+    /* Comparison Table Section */
+    .comparison-section {
+      background: var(--bg-card);
+      padding: 90px 40px;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .section-title-wrap {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 50px;
+    }
+
+    .comparison-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .compare-card {
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      border: 1px solid var(--color-border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .compare-card.winner {
+      background: linear-gradient(180deg, rgba(184, 233, 134, 0.15) 0%, var(--bg-card) 100%);
+      border: 2px solid var(--color-lime-accent);
+      box-shadow: 0 15px 35px rgba(184, 233, 134, 0.25);
+      position: relative;
+    }
+
+    .compare-card.winner::before {
+      content: 'RECOMMENDED FOR STUDENTS';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-deep-green);
+      color: var(--color-lime-accent);
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.05em;
+    }
+
+    /* Steps Section */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 28px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .step-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--color-primary-forest);
+      color: var(--color-lime-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      margin: 0 auto 18px;
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* FAQ */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: var(--bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 20px 24px;
+      font-weight: 700;
+      font-size: 1.05rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .faq-answer {
+      padding: 0 24px 20px;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      display: none;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    @media (max-width: 992px) {
+      .hero-section {
+        grid-template-columns: 1fr;
+        padding: 50px 20px;
+      }
+      .comparison-grid, .steps-grid, .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+      .pill-budget, .pill-protein, .pill-calorie {
+        position: static;
+        margin: 8px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Landing Header Navbar -->
+  <header class="landing-nav">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <div class="brand-icon-wrapper">
+        <i data-lucide="utensils" style="width: 22px; height: 22px;"></i>
+      </div>
+      <div>
+        <span class="brand-title" style="color: var(--text-main); font-size: 1.35rem;">PLATEPILOT</span>
+        <div class="brand-subtitle" style="font-size: 0.65rem;">NUTRININJA CUP</div>
+      </div>
+    </div>
+
+    <nav class="landing-nav-links">
+      <a href="#features">Features</a>
+      <a href="#problem-solution">Why Us</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#nutrition-value">Affordable Indian Nutrition</a>
+      <a href="#testimonials">Students</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <button class="icon-btn" id="theme-toggle-btn" title="Toggle Light/Dark Theme">
+        <span id="theme-toggle-icon"><i data-lucide="moon"></i></span>
+      </button>
+      <a href="dashboard.html" class="btn btn-outline btn-sm">Dashboard Demo</a>
+      <a href="dashboard.html" class="btn btn-lime btn-sm">
+        Start Your Journey <i data-lucide="arrow-right" style="width: 16px; height: 16px;"></i>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div>
+      <div class="hero-badge">
+        <i data-lucide="award"></i> NutriNinja Cup 2026 Champion Frontend
+      </div>
+      <h1 class="hero-title">
+        Healthy Eating <br>
+        <span class="highlight-lime">Shouldn't Be Expensive.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Build affordable, protein-rich meal plans that match your budget, nutrition goals, and student lifestyle. Engineered specifically for hostel students and apartment sharers.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="dashboard.html" class="btn btn-lime btn-lg">
+          <i data-lucide="sparkles"></i> Start Your Journey
+        </a>
+        <a href="#features" class="btn btn-outline btn-lg">
+          Explore Features <i data-lucide="chevron-down"></i>
+        </a>
+      </div>
+
+      <!-- Quick Social Proof Metric -->
+      <div style="display: flex; gap: 28px; margin-top: 40px; border-top: 1px solid var(--color-border); padding-top: 24px;">
+        <div>
+          <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-primary-forest);">₹120/day</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Target Budget</div>
+        </div>
+        <div>
+          <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-success);">110g+</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Daily Student Protein</div>
+        </div>
+        <div>
+          <div style="font-size: 1.5rem; font-weight: 800; color: var(--text-main);">52+</div>
+          <div style="font-size: 0.8rem; color: var(--text-muted);">Affordable Indian Recipes</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Visual Preview Card with Floating Badges -->
+    <div style="position: relative;">
+      <!-- Floating Calorie Badge -->
+      <div class="floating-pill pill-calorie floating-element-1">
+        <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(255, 145, 0, 0.15); display: flex; align-items: center; justify-content: center; color: #E65100;">
+          <i data-lucide="flame"></i>
+        </div>
+        <div>
+          <strong style="font-size: 0.95rem; display: block;">2,100 kcal Target</strong>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Mifflin-St Jeor Optimized</span>
+        </div>
+      </div>
+
+      <!-- Floating Protein Badge -->
+      <div class="floating-pill pill-protein floating-element-2">
+        <div style="width: 36px; height: 36px; border-radius: 50%; background: rgba(46, 125, 50, 0.15); display: flex; align-items: center; justify-content: center; color: #2E7D32;">
+          <i data-lucide="dumbbell"></i>
+        </div>
+        <div>
+          <strong style="font-size: 0.95rem; display: block;">114g Protein Achieved</strong>
+          <span style="font-size: 0.75rem; color: var(--color-success); font-weight: 700;">₹1.05 / g protein efficiency</span>
+        </div>
+      </div>
+
+      <!-- Floating Budget Pill -->
+      <div class="floating-pill pill-budget floating-element-3">
+        <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--color-lime-light); display: flex; align-items: center; justify-content: center; color: var(--color-primary-forest);">
+          <i data-lucide="wallet"></i>
+        </div>
+        <div>
+          <strong style="font-size: 0.95rem; display: block;">₹118 Spent Today</strong>
+          <span style="font-size: 0.75rem; color: var(--color-primary-forest); font-weight: 700;">₹2 Remaining Under Budget</span>
+        </div>
+      </div>
+
+      <!-- Main Visual Hero Card -->
+      <div class="hero-visual-card">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+          <div>
+            <span class="badge badge-lime">TODAY'S HIGHLIGHT</span>
+            <h3 style="font-size: 1.25rem; margin-top: 6px;">Egg Bhurji with 2 Rotis</h3>
+          </div>
+          <span style="font-size: 1.4rem; font-weight: 800; color: var(--color-primary-forest);">₹35</span>
+        </div>
+
+        <div style="height: 220px; border-radius: var(--radius-md); overflow: hidden; margin-bottom: 16px;">
+          <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=600&auto=format&fit=crop&q=80" 
+               alt="Egg Bhurji Roti" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <div class="macro-pills">
+          <div class="macro-pill-item">
+            <span class="macro-val protein-val">22g</span>
+            <span class="macro-lbl">Protein</span>
+          </div>
+          <div class="macro-pill-item">
+            <span class="macro-val">380</span>
+            <span class="macro-lbl">Calories</span>
+          </div>
+          <div class="macro-pill-item">
+            <span class="macro-val">38g</span>
+            <span class="macro-lbl">Carbs</span>
+          </div>
+          <div class="macro-pill-item">
+            <span class="macro-val">14g</span>
+            <span class="macro-lbl">Fats</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; margin-top: 14px;">
+          <a href="dashboard.html" class="btn btn-primary btn-sm" style="flex: 1;">
+            Open Live Dashboard
+          </a>
+          <a href="recipes.html" class="btn btn-outline btn-sm">
+            Cost Breakdown (₹)
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem and Solution Section -->
+  <section id="problem-solution" class="comparison-section">
+    <div class="section-title-wrap">
+      <span class="badge badge-lime">THE STUDENT DILEMMA</span>
+      <h2 style="font-size: 2.2rem; margin: 12px 0;">Hostel Mess vs Food Delivery vs PlatePilot</h2>
+      <p>College students are caught between tasteless low-protein mess food and expensive food delivery apps that drain pocket money in 10 days.</p>
+    </div>
+
+    <div class="comparison-grid">
+      <!-- Option 1: Mess -->
+      <div class="compare-card">
+        <h3 style="margin-bottom: 6px;">Hostel Mess Food</h3>
+        <div style="font-size: 1.75rem; font-weight: 800; color: var(--text-main); margin-bottom: 14px;">₹80 - ₹100 / day</div>
+        <p style="font-size: 0.88rem; margin-bottom: 20px;">Included in fees, but lacks essential nutrition.</p>
+        
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.88rem;">
+          <li style="display: flex; gap: 8px; color: var(--color-danger);"><i data-lucide="x"></i> Only 30-40g protein/day</li>
+          <li style="display: flex; gap: 8px; color: var(--color-danger);"><i data-lucide="x"></i> Excessive oil and watery dals</li>
+          <li style="display: flex; gap: 8px; color: var(--color-danger);"><i data-lucide="x"></i> Zero customization for fitness</li>
+          <li style="display: flex; gap: 8px; color: var(--color-danger);"><i data-lucide="x"></i> Monotonous weekly menu</li>
+        </ul>
+      </div>
+
+      <!-- Option 2: Zomato / Swiggy -->
+      <div class="compare-card">
+        <h3 style="margin-bottom: 6px;">Food Delivery Apps</h3>
+        <div style="font-size: 1.75rem; font-weight: 800; color: var(--color-danger); margin-bottom: 14px;">₹350 - ₹500 / day</div>
+        <p style="font-size: 0.88rem; margin-bottom: 20px;">Convenient but financially devastating for students.</p>
+        
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.88rem;">
+          <li style="display: flex; gap: 8px; color: var(--color-danger);"><i data-lucide="x"></i> ₹12,000+ per month drain</li>
+          <li style="display: flex; gap: 8px; color: var(--color-danger);"><i data-lucide="x"></i> High sodium and processed fats</li>
+          <li style="display: flex; gap: 8px; color: var(--color-danger);"><i data-lucide="x"></i> Unreliable macro counts</li>
+          <li style="display: flex; gap: 8px; color: var(--color-danger);"><i data-lucide="x"></i> Hidden delivery charges & taxes</li>
+        </ul>
+      </div>
+
+      <!-- Option 3: PlatePilot -->
+      <div class="compare-card winner">
+        <h3 style="margin-bottom: 6px; color: var(--color-primary-forest);">PlatePilot Solution</h3>
+        <div style="font-size: 1.75rem; font-weight: 800; color: var(--color-primary-forest); margin-bottom: 14px;">₹110 - ₹130 / day</div>
+        <p style="font-size: 0.88rem; margin-bottom: 20px;">The smart student optimizer: maximum protein, minimum budget.</p>
+        
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.88rem;">
+          <li style="display: flex; gap: 8px; color: var(--color-success);"><i data-lucide="check"></i> <strong>110g - 120g pure protein/day</strong></li>
+          <li style="display: flex; gap: 8px; color: var(--color-success);"><i data-lucide="check"></i> Knapsack-based budget guarantee</li>
+          <li style="display: flex; gap: 8px; color: var(--color-success);"><i data-lucide="check"></i> Electric kettle & induction hacks</li>
+          <li style="display: flex; gap: 8px; color: var(--color-success);"><i data-lucide="check"></i> Mess rescue mode for ₹15 add-ons</li>
+        </ul>
+
+        <a href="dashboard.html" class="btn btn-lime btn-sm" style="margin-top: 24px;">
+          Try Demo Profile <i data-lucide="arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Features Grid -->
+  <section id="features" style="padding: 90px 40px; max-width: 1300px; margin: 0 auto;">
+    <div class="section-title-wrap">
+      <span class="badge badge-lime">POWERFUL TOOLS</span>
+      <h2 style="font-size: 2.2rem; margin: 12px 0;">Built Specifically for Hostel Living</h2>
+      <p>Everything you need to hit your fitness and nutrition targets without expensive equipment.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px;">
+      <!-- Feature 1 -->
+      <div class="card card-hover">
+        <div class="brand-icon-wrapper" style="margin-bottom: 16px;">
+          <i data-lucide="cpu"></i>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Budget-Aware Optimizer</h3>
+        <p style="font-size: 0.88rem; line-height: 1.5;">
+          Real greedy & knapsack algorithm that maximizes protein while guaranteeing you stay within your daily ₹120 allowance.
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="card card-hover">
+        <div class="brand-icon-wrapper" style="margin-bottom: 16px;">
+          <i data-lucide="book-open"></i>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 8px;">52+ Indian Recipes</h3>
+        <p style="font-size: 0.88rem; line-height: 1.5;">
+          From Egg Bhurji to Soya Chunks Curry and Moong Dal Chilla. Every recipe has realistic kirana price breakdowns and student hacks.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="card card-hover">
+        <div class="brand-icon-wrapper" style="margin-bottom: 16px;">
+          <i data-lucide="repeat"></i>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 8px;">One-Click Meal Swap</h3>
+        <p style="font-size: 0.88rem; line-height: 1.5;">
+          Don't like today's lunch? Swap it instantly with alternatives filtered by budget, calories, and dietary preference.
+        </p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="card card-hover">
+        <div class="brand-icon-wrapper" style="margin-bottom: 16px;">
+          <i data-lucide="shield-alert"></i>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Hostel Mess Rescue Mode</h3>
+        <p style="font-size: 0.88rem; line-height: 1.5;">
+          Input today's bland mess menu; PlatePilot recommends ₹10 - ₹25 booster add-ons (boiled eggs, chana, sattu) to hit protein goals.
+        </p>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="card card-hover">
+        <div class="brand-icon-wrapper" style="margin-bottom: 16px;">
+          <i data-lucide="package-search"></i>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 8px;">Pantry Leftover Finder</h3>
+        <p style="font-size: 0.88rem; line-height: 1.5;">
+          Got oats, peanuts, and eggs in your room? Find instant recipes requiring ₹0 to ₹15 minimum extra ingredients.
+        </p>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="card card-hover">
+        <div class="brand-icon-wrapper" style="margin-bottom: 16px;">
+          <i data-lucide="file-text"></i>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 8px;">1-Click PDF Export</h3>
+        <p style="font-size: 0.88rem; line-height: 1.5;">
+          Download a print-ready 7-Day Meal Plan and Consolidated Grocery Checklist formatted for hostel pin-boards.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" style="background: var(--bg-card); padding: 90px 40px; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <div class="section-title-wrap">
+      <span class="badge badge-lime">SIMPLE 4-STEP WORKFLOW</span>
+      <h2 style="font-size: 2.2rem; margin: 12px 0;">How PlatePilot Optimizes Your Week</h2>
+      <p>Zero complicated trackers. Clean browser-local execution in under 2 minutes.</p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4 style="margin-bottom: 6px;">Set Budget & Goals</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          Enter your daily budget (e.g. ₹120), height, weight, and fitness goal (Muscle Gain or Weight Loss).
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4 style="margin-bottom: 6px;">Generate Meal Plan</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          The knapsack engine generates Breakfast, Lunch, Snack, and Dinner matching your macros under budget.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4 style="margin-bottom: 6px;">Swap & Customize</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          Swap any dish with 1-click alternatives or check hostel mess rescue options for zero-cooking days.
+        </p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h4 style="margin-bottom: 6px;">Shop & Export PDF</h4>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          Auto-generate your consolidated grocery checklist and export a clean PDF for the week.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Affordable Indian Nutrition Comparison Matrix -->
+  <section id="nutrition-value" style="padding: 90px 40px; max-width: 1000px; margin: 0 auto;">
+    <div class="section-title-wrap">
+      <span class="badge badge-lime">DATA-DRIVEN GROCERY VALUE</span>
+      <h2 style="font-size: 2.2rem; margin: 12px 0;">Indian Protein-to-Rupee Value Ranking</h2>
+      <p>We analyzed market prices across Indian kirana stores to rank the most cost-effective student protein sources.</p>
+    </div>
+
+    <div class="card" style="padding: 0; overflow: hidden;">
+      <table class="cost-table" style="margin: 0;">
+        <thead>
+          <tr>
+            <th>Food Item</th>
+            <th>Protein / 100g</th>
+            <th>Est. Kirana Price</th>
+            <th style="text-align: right;">Protein / ₹1 Spent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background: rgba(184, 233, 134, 0.15);">
+            <td><strong>🥇 Soya Chunks (Nutrela)</strong></td>
+            <td>52g</td>
+            <td>₹12 / 100g</td>
+            <td style="text-align: right; font-weight: 800; color: var(--color-success);">4.33g / ₹1</td>
+          </tr>
+          <tr>
+            <td><strong>🥈 Roasted Bhuna Chana</strong></td>
+            <td>22g</td>
+            <td>₹16 / 100g</td>
+            <td style="text-align: right; font-weight: 800; color: var(--color-success);">1.38g / ₹1</td>
+          </tr>
+          <tr>
+            <td><strong>🥉 Yellow / Green Moong Dal</strong></td>
+            <td>24g</td>
+            <td>₹18 / 100g</td>
+            <td style="text-align: right; font-weight: 800; color: var(--color-success);">1.33g / ₹1</td>
+          </tr>
+          <tr>
+            <td><strong>Chana Sattu</strong></td>
+            <td>25g</td>
+            <td>₹20 / 100g</td>
+            <td style="text-align: right; font-weight: 800; color: var(--color-success);">1.25g / ₹1</td>
+          </tr>
+          <tr>
+            <td><strong>Farm Fresh Eggs</strong></td>
+            <td>13g</td>
+            <td>₹14 / 2 eggs</td>
+            <td style="text-align: right; font-weight: 800; color: var(--color-success);">0.93g / ₹1</td>
+          </tr>
+          <tr>
+            <td><strong>Chicken Breast</strong></td>
+            <td>27g</td>
+            <td>₹32 / 100g</td>
+            <td style="text-align: right; font-weight: 800; color: var(--color-main);">0.84g / ₹1</td>
+          </tr>
+          <tr>
+            <td><strong>Dairy Paneer</strong></td>
+            <td>18g</td>
+            <td>₹38 / 100g</td>
+            <td style="text-align: right; font-weight: 800; color: var(--color-main);">0.47g / ₹1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Student Testimonials -->
+  <section id="testimonials" style="background: var(--bg-card); padding: 90px 40px; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <div class="section-title-wrap">
+      <span class="badge badge-lime">STUDENT VOICES</span>
+      <h2 style="font-size: 2.2rem; margin: 12px 0;">Loved by Hostelers Across India</h2>
+      <p>Real college students saving money and hitting muscle gain goals.</p>
+    </div>
+
+    <div class="testimonials-grid">
+      <div class="card card-hover">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" 
+               alt="Rohan V." style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;">
+          <div>
+            <strong style="font-size: 0.95rem; display: block;">Rohan Verma</strong>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">NIT Trichy • 3rd Year B.Tech</span>
+          </div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          "I used to blow ₹6,000 every month on food deliveries just to get protein after gym. PlatePilot's kettle recipes and soya tricks cut my monthly food spend down to ₹3,500 while increasing my daily protein to 115g!"
+        </p>
+      </div>
+
+      <div class="card card-hover">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=80" 
+               alt="Ananya D." style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;">
+          <div>
+            <strong style="font-size: 0.95rem; display: block;">Ananya Deshmukh</strong>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">BITS Pilani • 2nd Year M.Sc</span>
+          </div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          "As a vegetarian girl in a hostel with horrible mess food, hitting 80g protein felt impossible. The Sattu Chaas and Moong Chilla meal plans saved my health during mid-sems."
+        </p>
+      </div>
+
+      <div class="card card-hover">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 14px;">
+          <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&auto=format&fit=crop&q=80" 
+               alt="Vikram S." style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover;">
+          <div>
+            <strong style="font-size: 0.95rem; display: block;">Vikram Singh</strong>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">IIT Delhi • Final Year</span>
+          </div>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5;">
+          "The Hostel Mess Rescue mode is pure genius. Instead of boycotting mess food, you eat the carbs there and add ₹20 worth of boiled eggs & bhuna chana in your room. 10/10 hackathon product."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive FAQ Section -->
+  <section id="faq" style="padding: 90px 40px; max-width: 900px; margin: 0 auto;">
+    <div class="section-title-wrap">
+      <span class="badge badge-lime">FREQUENTLY ASKED QUESTIONS</span>
+      <h2 style="font-size: 2.2rem; margin: 12px 0;">Got Questions? We've Got Answers</h2>
+    </div>
+
+    <div class="faq-container">
+      <div class="faq-item active">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          <span>Is PlatePilot really 100% free with no backend server?</span>
+          <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Yes! PlatePilot is built purely on frontend technologies (HTML5, modern CSS3, ES6 JavaScript) and stores all your data securely in your browser's localStorage. No external database, no server tracking, and no hidden subscriptions.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          <span>Are the recipe prices realistic for 2026?</span>
+          <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Yes! All ingredient costs are calibrated against real 2024-2026 Indian kirana stores and local market prices (e.g. Eggs ₹7 each, Soya Chunks ₹12/100g, Atta ₹40/kg, Rice ₹45/kg). You can even customize unit prices in settings to match your specific campus city!
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          <span>Can I cook these meals if I only have an electric kettle?</span>
+          <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          Absolutely. Over 60% of our recipes and snack boosters feature dedicated "Hostel Hacks" for electric kettles, induction pans, or zero-cooking preparation (like Sprouted Moong Chaat, Sattu Chaas, and Roasted Chana).
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="this.parentElement.classList.toggle('active')">
+          <span>How does the Meal Optimizer algorithm work?</span>
+          <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          PlatePilot utilizes a multi-objective greedy & knapsack-inspired optimization function. It systematically scores meal combinations based on strict budget constraints (≤ ₹120), protein density per rupee, calorie matching with Mifflin-St Jeor formulas, and ingredient variety.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section style="background: linear-gradient(135deg, var(--color-primary-forest), var(--color-deep-green)); color: var(--color-white); padding: 80px 40px; text-align: center;">
+    <div style="max-width: 700px; margin: 0 auto;">
+      <h2 style="font-size: 2.5rem; color: var(--color-white); margin-bottom: 16px;">
+        Ready to Fuel Your Academic & Fitness Journey?
+      </h2>
+      <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); margin-bottom: 32px;">
+        Start using PlatePilot today. No signup required, zero backend, instant browser activation.
+      </p>
+      <a href="dashboard.html" class="btn btn-lime btn-lg">
+        <i data-lucide="sparkles"></i> Launch PlatePilot Dashboard
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: var(--bg-sidebar); color: rgba(255, 255, 255, 0.7); padding: 50px 40px 30px; border-top: 1px solid rgba(255,255,255,0.08);">
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div class="brand-icon-wrapper">
+          <i data-lucide="utensils" style="width: 20px; height: 20px;"></i>
+        </div>
+        <div>
+          <strong style="color: var(--color-white); font-size: 1.2rem;">PLATEPILOT</strong>
+          <div style="font-size: 0.7rem; color: var(--color-lime-accent); font-weight: 700;">NUTRININJA CUP EDITION</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 24px; font-size: 0.88rem;">
+        <a href="dashboard.html" style="color: rgba(255,255,255,0.8);">Dashboard</a>
+        <a href="recipes.html" style="color: rgba(255,255,255,0.8);">52+ Recipes</a>
+        <a href="meal-planner.html" style="color: rgba(255,255,255,0.8);">7-Day Planner</a>
+        <a href="grocery.html" style="color: rgba(255,255,255,0.8);">Smart Grocery</a>
+        <a href="hostel-mess.html" style="color: rgba(255,255,255,0.8);">Mess Rescue</a>
+      </div>
+
+      <div style="font-size: 0.78rem; color: rgba(255, 255, 255, 0.5);">
+        © 2026 PlatePilot. Eat Smart. Spend Less. Grow Strong.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  
+  <script src="js/data/ingredients.js"></script>
+  <script src="js/data/recipes.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

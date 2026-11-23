@@ -1,0 +1,556 @@
+/* ==========================================================================
+   PLATEPILOT - UI COMPONENTS & ATOMIC ELEMENTS
+   ========================================================================== */
+
+/* ==================== BUTTONS ==================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background-color: var(--color-primary-forest);
+  color: var(--color-white);
+  box-shadow: 0 4px 12px rgba(22, 61, 50, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-secondary-green);
+  color: var(--color-white);
+  box-shadow: 0 6px 16px rgba(22, 61, 50, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-lime {
+  background-color: var(--color-lime-accent);
+  color: var(--color-deep-green);
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(184, 233, 134, 0.35);
+}
+
+.btn-lime:hover {
+  background-color: var(--color-lime-hover);
+  box-shadow: 0 6px 20px rgba(184, 233, 134, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border-color: var(--color-border);
+  color: var(--text-main);
+}
+
+.btn-outline:hover {
+  border-color: var(--color-primary-forest);
+  background-color: var(--bg-card-subtle);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: var(--text-main);
+}
+
+.btn-ghost:hover {
+  background-color: var(--bg-card-subtle);
+}
+
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  border-radius: var(--radius-sm);
+}
+
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 1.05rem;
+  border-radius: var(--radius-lg);
+}
+
+.btn-icon {
+  padding: 8px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+}
+
+/* ==================== CARDS ==================== */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border-hover);
+}
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .card-glass {
+  background: rgba(19, 36, 29, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ==================== BADGES ==================== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.badge-veg {
+  background-color: rgba(46, 125, 50, 0.12);
+  color: var(--color-veg);
+  border: 1px solid rgba(46, 125, 50, 0.25);
+}
+
+.badge-nonveg {
+  background-color: rgba(198, 40, 40, 0.12);
+  color: var(--color-nonveg);
+  border: 1px solid rgba(198, 40, 40, 0.25);
+}
+
+.badge-vegan {
+  background-color: rgba(0, 137, 123, 0.12);
+  color: var(--color-vegan);
+  border: 1px solid rgba(0, 137, 123, 0.25);
+}
+
+.badge-lime {
+  background-color: var(--color-lime-light);
+  color: var(--color-primary-forest);
+  border: 1px solid rgba(184, 233, 134, 0.4);
+}
+
+[data-theme="dark"] .badge-lime {
+  color: var(--color-lime-accent);
+}
+
+.badge-gray {
+  background-color: var(--bg-card-subtle);
+  color: var(--text-muted);
+}
+
+/* ==================== MEAL CARDS ==================== */
+.meal-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.meal-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(184, 233, 134, 0.5);
+}
+
+.meal-card-img-container {
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-card-subtle);
+}
+
+.meal-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.meal-card:hover .meal-card-img {
+  transform: scale(1.06);
+}
+
+.meal-card-slot-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(16, 44, 37, 0.85);
+  backdrop-filter: blur(8px);
+  color: var(--color-white);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meal-card-price-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--color-lime-accent);
+  color: var(--color-deep-green);
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.meal-card-body {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.meal-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.meal-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.macro-pills {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 10px 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.macro-pill-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.macro-val {
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text-main);
+}
+
+.macro-val.protein-val {
+  color: var(--color-success);
+}
+
+[data-theme="dark"] .macro-val.protein-val {
+  color: var(--color-lime-accent);
+}
+
+.macro-lbl {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.meal-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  gap: 10px;
+}
+
+.meal-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 2px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  background-color: var(--bg-card);
+}
+
+.custom-checkbox.checked {
+  background-color: var(--color-primary-forest);
+  border-color: var(--color-primary-forest);
+  color: var(--color-white);
+}
+
+[data-theme="dark"] .custom-checkbox.checked {
+  background-color: var(--color-lime-accent);
+  border-color: var(--color-lime-accent);
+  color: var(--color-deep-green);
+}
+
+/* ==================== MODALS ==================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(16, 44, 37, 0.65);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background-color: var(--bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+  transform: scale(0.95);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.modal-backdrop.active .modal-container {
+  transform: scale(1);
+}
+
+.modal-header {
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-body {
+  padding: 24px 28px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.modal-footer {
+  padding: 16px 28px;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  background-color: var(--bg-card-subtle);
+}
+
+/* ==================== TOAST NOTIFICATIONS ==================== */
+#toast-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  background-color: var(--color-deep-green);
+  color: var(--color-white);
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  max-width: 380px;
+  border-left: 4px solid var(--color-lime-accent);
+  transform: translateX(120%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast-success {
+  border-left-color: var(--color-lime-accent);
+}
+
+.toast-error {
+  border-left-color: #FF5252;
+}
+
+.toast-info {
+  border-left-color: #40C4FF;
+}
+
+/* ==================== FORM ELEMENTS ==================== */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.86rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text-main);
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: var(--color-primary-forest);
+  box-shadow: 0 0 0 3px rgba(22, 61, 50, 0.12);
+}
+
+[data-theme="dark"] .form-control:focus {
+  border-color: var(--color-lime-accent);
+  box-shadow: 0 0 0 3px rgba(184, 233, 134, 0.15);
+}
+
+.range-slider-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.range-slider {
+  flex: 1;
+  accent-color: var(--color-primary-forest);
+  cursor: pointer;
+}
+
+[data-theme="dark"] .range-slider {
+  accent-color: var(--color-lime-accent);
+}
+
+.range-slider-val {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-primary-forest);
+  min-width: 60px;
+}
+
+[data-theme="dark"] .range-slider-val {
+  color: var(--color-lime-accent);
+}
+
+/* ==================== INGREDIENT COST BREAKDOWN TABLE ==================== */
+.cost-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  margin: 14px 0;
+}
+
+.cost-table th, .cost-table td {
+  padding: 10px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.cost-table th {
+  font-weight: 700;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  background-color: var(--bg-card-subtle);
+}
+
+.cost-table tr:last-child td {
+  border-bottom: none;
+}
+
+.cost-table .total-row {
+  font-weight: 800;
+  font-size: 0.95rem;
+  background-color: var(--color-lime-light);
+  color: var(--color-deep-green);
+}
+
+[data-theme="dark"] .cost-table .total-row {
+  color: var(--color-lime-accent);
+}
